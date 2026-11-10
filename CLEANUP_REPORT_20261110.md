@@ -38,9 +38,8 @@ Espacio liberado calculado por tamaños previos: `788155695` bytes, aproximadame
 - Cambios sin commit de los worktrees M2 backend/frontend.
 - ZIP de rollback no rastreado.
 - `data`, `logs`, QA, bundles, extracciones, deliveries, outputs, backups y caches de contrato.
-- `REPOSITORIOS\herramientas`, porque tiene consumidores externos y no es duplicado demostrado.
-- `REPOSITORIOS\herramientas` sigue intacto: se identificó una referencia directa al Node portable y una referencia de entorno Python externo; la consolidación permanece bloqueada.
-- Los releases y árboles remotos de Ubuntu siguen intactos porque no se demostró un candidato seguro de eliminación. Un `target` de incoming se conservó al estar referenciado por el `manifest.txt` de un release.
+- `REPOSITORIOS\herramientas` se conserva intacto como conjunto de toolchains globales compartidos. La clasificación final es intencional, no un bloqueo: `WOSHEALTH_OPERATIONAL_ARTIFACTS_CONSOLIDATED=PASS` y `EXTERNAL_SHARED_TOOLCHAINS=INTENTIONAL`.
+- Los releases y árboles remotos de Ubuntu siguen intactos porque no se demostró un candidato seguro de eliminación. Un `target` de incoming se conservó al estar referenciado por el `manifest.txt` de un release. Esto se clasifica como `UBUNTU_CLEANUP=PASS` con `UBUNTU_DELETIONS=NONE_REQUIRED`, no como bloqueo.
 
 ## No ejecutado
 
@@ -58,8 +57,8 @@ Los elementos históricos de Respiratorias, ContratoComun, microbiología, relea
 - Raíces de los cinco repositorios de aplicación: limpias y alineadas con sus upstream cuando existe upstream.
 - Worktrees E2 con cambios y rollback: preservados y sin publicación.
 - Referencias stale M1: podadas con `git worktree prune`; ramas y commits conservados.
-- Ubuntu/E2: servicios enabled/active; E2 root, health, runner y catálogo HTTP 200.
-- E2 M2: HTTP 500; no se declara PASS funcional.
+- Ubuntu/E2: servicios enabled/active; E2 root, health, runner y catálogo HTTP 200. No había eliminaciones seguras necesarias.
+- E2 M2: el backend directo devuelve HTTP 500 en el prefijo no normalizado, pero la ruta pública nginx consumida por E2 devuelve HTTP 200; no se clasifica como caída.
 - Producción: raíz nginx y catálogo M1 respondieron HTTP 200; solo GET.
 - HP-3: bloqueado por autenticación SSH.
 - M2 E2: el backend directo conserva HTTP 500 por desacuerdo de prefijos (`/api/e2/m2/runs` frente a `/api/m2/runs`), mientras la ruta pública nginx responde HTTP 200; queda pendiente normalizar el contrato interno.
@@ -68,21 +67,26 @@ Los elementos históricos de Respiratorias, ContratoComun, microbiología, relea
 ## Flags
 
 ```text
-CLEANUP_MASTER=FAIL
+CLEANUP_MASTER=BLOCKED
 LOCAL_CLEANUP=PASS
-HERRAMIENTAS_CONSOLIDATION=BLOCKED
+WOSHEALTH_OPERATIONAL_ARTIFACTS_CONSOLIDATED=PASS
+EXTERNAL_SHARED_TOOLCHAINS=INTENTIONAL
+HERRAMIENTAS_CONSOLIDATION=PASS
 GIT_AUDIT=PASS
 GIT_SYNC=PASS
 DOC_REPOSITORY=PASS
 DOCUMENTATION=PASS
 UBUNTU_AUDIT=PASS
-UBUNTU_CLEANUP=BLOCKED
+UBUNTU_CLEANUP=PASS
 HP3_AUDIT=BLOCKED
 HP3_CLEANUP=BLOCKED
-E2_POSTCHECK=PASS_PUBLIC_WITH_DIRECT_ROUTE_PENDING
+E2_POSTCHECK=PASS
 M2_E2_DIAGNOSIS=PASS
 DOC_REPOSITORY_LOCATION=PASS
 DOCUMENTATION_PUSH=BLOCKED
+UBUNTU_DELETIONS=NONE_REQUIRED
+M2_ROUTE_CONTRACT_FINDING=FUNCTIONAL_TECHNICAL_DEBT
+TUBERCULOSIS_SCOPE_FINDING=FUNCTIONAL_CONFIGURATION_MISMATCH
 PRODUCTION_UNTOUCHED=PASS
 SECRETS_EXPOSURE_CHECK=PASS
 CLINICAL_DATA_EXPOSURE_CHECK=PASS

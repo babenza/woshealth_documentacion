@@ -15,4 +15,9 @@ Estos puntos fueron observados, pero NO se modificaron en esta tarea:
 
 9. El HTTP 500 directo de M2 E2 queda atribuido al desacuerdo `/api/e2/m2/runs` frente a `/api/m2/runs`; nginx lo oculta en la ruta pública, y el output root está presente.
 10. Tuberculosis sigue siendo una fuente activa de E2: aparece en el catálogo `r98`, tiene bundle `R98/bundles/Tuberculosis` y worker vivo. No se eliminó ni se modificó.
-11. La consolidación de `REPOSITORIOS\herramientas` queda bloqueada por consumidores externos identificados y falta de prueba de no uso.
+11. `REPOSITORIOS\herramientas` queda clasificado como toolchain global compartido intencional; no contiene artefactos operativos WOSHealth demostrados.
+
+## Clasificación para tareas independientes
+
+12. `M2_ROUTE_CONTRACT_FINDING=FUNCTIONAL_TECHNICAL_DEBT`: el backend directo y el encaminamiento público usan prefijos distintos; la ruta pública funciona. Próxima tarea: añadir pruebas de contrato para backend directo y nginx, verificar `GET /api/e2/m2/runs` y `/api/m2/runs`, y normalizar un único prefijo sin modificar producción durante esta tarea.
+13. `TUBERCULOSIS_SCOPE_FINDING=FUNCTIONAL_CONFIGURATION_MISMATCH`: r98 publica cinco módulos aunque el objetivo declarado contiene exactamente cuatro. Próxima tarea: confirmar el catálogo autorizado y ajustar de forma coordinada catálogo, runner, frontend y pruebas; no retirar bundle, worker, registro ni UI durante la limpieza.
