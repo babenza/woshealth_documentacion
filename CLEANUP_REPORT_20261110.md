@@ -6,6 +6,8 @@
 - Auditoría Ubuntu de solo lectura.
 - Auditoría HTTP de salud/catálogo/raíces.
 - Creación de repositorio local de documentación bajo la raíz canónica.
+- Traslado de `woshealth-docs` a `C:\Users\baben\Desktop\REPOSITORIOS\woshealth\woshealth-docs` como ubicación permanente.
+- Segunda pasada de limpieza local con comparación/hash antes de eliminar duplicados demostrados.
 - Poda exclusivamente de metadata Git stale, tras conservar ramas y commits.
 - Limpieza local limitada a artefactos regenerables explícitamente identificados.
 - Fetch remoto correcto en los cinco repositorios WOSHealth.
@@ -21,6 +23,13 @@
 - `HERRAMIENTAS/workspace/mm4-activation/rollback-mm3-m2-baseline/dist`.
 - `HERRAMIENTAS/cache/maven-r74-20261029`.
 
+## Segunda pasada: eliminaciones demostradas
+
+- Duplicado exacto de `HERRAMIENTAS/workspace/integration/IntegracionModulo1`: se conservaron cuatro ficheros únicos en `HERRAMIENTAS/workspace/preserved/IntegracionModulo1-unique-20261110` y se eliminaron 92 ficheros duplicados, `211870240` bytes.
+- Cuatro copias exactas de ZIP en la raíz de `ContratoComun` se eliminaron; se conservaron las copias de `ContratoComun/Evolucion2`, `89569171` bytes.
+- Wrapper `Respiratorias/v5/proa_respiratorias_app_bundle_2_5_6_v9 (2).zip` se eliminó; su ZIP anidado coincide por SHA-256 con el V9 canónico, `826740` bytes.
+- Total de esta pasada: `302266151` bytes, aproximadamente `0.28 GiB`.
+
 Espacio liberado calculado por tamaños previos: `788155695` bytes, aproximadamente `0.73 GiB`.
 
 ## Preservado explícitamente
@@ -30,6 +39,8 @@ Espacio liberado calculado por tamaños previos: `788155695` bytes, aproximadame
 - ZIP de rollback no rastreado.
 - `data`, `logs`, QA, bundles, extracciones, deliveries, outputs, backups y caches de contrato.
 - `REPOSITORIOS\herramientas`, porque tiene consumidores externos y no es duplicado demostrado.
+- `REPOSITORIOS\herramientas` sigue intacto: se identificó una referencia directa al Node portable y una referencia de entorno Python externo; la consolidación permanece bloqueada.
+- Los releases y árboles remotos de Ubuntu siguen intactos porque no se demostró un candidato seguro de eliminación. Un `target` de incoming se conservó al estar referenciado por el `manifest.txt` de un release.
 
 ## No ejecutado
 
@@ -51,6 +62,8 @@ Los elementos históricos de Respiratorias, ContratoComun, microbiología, relea
 - E2 M2: HTTP 500; no se declara PASS funcional.
 - Producción: raíz nginx y catálogo M1 respondieron HTTP 200; solo GET.
 - HP-3: bloqueado por autenticación SSH.
+- M2 E2: causa del HTTP 500 documentada como desacuerdo de prefijos frontend/backend (`/api/e2/m2/runs` frente a `/api/m2/runs`).
+- Tuberculosis E2: fuente activa documentada; no se trató como residuo histórico.
 
 ## Flags
 
@@ -67,6 +80,9 @@ UBUNTU_CLEANUP=BLOCKED
 HP3_AUDIT=BLOCKED
 HP3_CLEANUP=BLOCKED
 E2_POSTCHECK=FAIL
+M2_E2_DIAGNOSIS=PASS
+DOC_REPOSITORY_LOCATION=PASS
+DOCUMENTATION_PUSH=BLOCKED
 PRODUCTION_UNTOUCHED=PASS
 SECRETS_EXPOSURE_CHECK=PASS
 CLINICAL_DATA_EXPOSURE_CHECK=PASS

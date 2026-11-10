@@ -9,13 +9,15 @@
 | `woshealth_back_e2` | limpio, `9d63d95...`, `release/e2-mm17` | `babenza/woshealth_back_e2` | release `9d63d95-r98-mm29-20261106` |
 | `woshealth_front_vue_e2` | limpio, `ea6dc0e...`, `release/e2-mm17` | `babenza/woshealth_front_vue_e2` | release `ea6dc0e-r98-mm29-20261106-identityfix` |
 | `woshealth-m2-layer1` | limpio, `bec0c4a...`, sin upstream | remoto vacío | fuente preparada, no activada |
-| `woshealth-docs` | creado localmente para esta auditoría | no configurado | documentación de auditoría |
+| `woshealth-docs` | `C:\Users\baben\Desktop\REPOSITORIOS\woshealth\woshealth-docs`, limpio, `f0f7ef0...` | no configurado | documentación de auditoría |
 
 ## Fuentes no Git
 
 - `IntegracionModulo1`, `ContratoComun` y `Documentacion`: entregas/documentos; no son fuentes Git operativas.
-- `C:\Users\baben\Desktop\REPOSITORIOS\herramientas`: toolchains compartidos y referencias de otros repositorios; se conserva como `REVIEW_BLOCKED`.
+- `C:\Users\baben\Desktop\REPOSITORIOS\herramientas`: toolchains compartidos y referencias de otros repositorios; se conserva como `REVIEW_BLOCKED`. Hay una referencia directa al Node portable desde `CORE-BUSINESS-OS` y un `pyvenv.cfg` que referencia Python 3.12 desde el árbol de QA; no existe prueba segura para migrar o eliminar este árbol.
 - `woshealth\HERRAMIENTAS`: raíz canónica de evidencias, workspaces y artefactos WOSHealth.
+
+La carpeta documental se movió desde `HERRAMIENTAS\workspace\woshealth-docs` a la ruta permanente indicada arriba. La ubicación anterior quedó eliminada y no hay referencias locales a ella.
 
 ## Worktrees
 

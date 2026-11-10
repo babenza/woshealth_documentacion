@@ -10,3 +10,9 @@ Estos puntos fueron observados, pero NO se modificaron en esta tarea:
 6. El puerto `5182` sirve una aplicación titulada Módulo 2 Capa 2, no la UI M1 esperada históricamente.
 7. `/api/e2/m2/runs` responde HTTP 500.
 8. SNC aparece bloqueado en M1; evidencia histórica del runner y el worker Tuberculosis requieren reconciliación.
+
+## Evidencia de la segunda pasada de limpieza
+
+9. El HTTP 500 de M2 E2 queda atribuido al desacuerdo `/api/e2/m2/runs` (frontend) frente a `/api/m2/runs` (backend); el output root está presente.
+10. Tuberculosis sigue siendo una fuente activa de E2: aparece en el catálogo `r98`, tiene bundle `R98/bundles/Tuberculosis` y worker vivo. No se eliminó ni se modificó.
+11. La consolidación de `REPOSITORIOS\herramientas` queda bloqueada por consumidores externos identificados y falta de prueba de no uso.
