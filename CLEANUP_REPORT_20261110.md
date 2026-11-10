@@ -62,7 +62,7 @@ Los elementos históricos de Respiratorias, ContratoComun, microbiología, relea
 - E2 M2: HTTP 500; no se declara PASS funcional.
 - Producción: raíz nginx y catálogo M1 respondieron HTTP 200; solo GET.
 - HP-3: bloqueado por autenticación SSH.
-- M2 E2: causa del HTTP 500 documentada como desacuerdo de prefijos frontend/backend (`/api/e2/m2/runs` frente a `/api/m2/runs`).
+- M2 E2: el backend directo conserva HTTP 500 por desacuerdo de prefijos (`/api/e2/m2/runs` frente a `/api/m2/runs`), mientras la ruta pública nginx responde HTTP 200; queda pendiente normalizar el contrato interno.
 - Tuberculosis E2: fuente activa documentada; no se trató como residuo histórico.
 
 ## Flags
@@ -79,7 +79,7 @@ UBUNTU_AUDIT=PASS
 UBUNTU_CLEANUP=BLOCKED
 HP3_AUDIT=BLOCKED
 HP3_CLEANUP=BLOCKED
-E2_POSTCHECK=FAIL
+E2_POSTCHECK=PASS_PUBLIC_WITH_DIRECT_ROUTE_PENDING
 M2_E2_DIAGNOSIS=PASS
 DOC_REPOSITORY_LOCATION=PASS
 DOCUMENTATION_PUSH=BLOCKED

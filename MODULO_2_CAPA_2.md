@@ -15,8 +15,8 @@ flowchart LR
 
 - Proceso Node activo: `/home/suryka/modulo2/mdro-layer2-vue/server.js` en `:5182`.
 - Se localizaron `public/data/run_manifest.json` y `dist/data/run_manifest.json`.
-- La API E2 `/api/e2/m2/runs` devolvió HTTP 500 con `No static resource`.
-- La ruta `/api/m2/runs` del mismo backend devolvió HTTP 200. La causa es el desacuerdo de prefijo entre frontend y backend activo; no se aplicó rewrite nginx ni cambio funcional.
+- El backend directo E2 `:8996` devuelve HTTP 500 con `No static resource` para `/api/e2/m2/runs`, mientras `/api/m2/runs` devuelve HTTP 200. La causa es el desacuerdo de prefijo entre frontend y backend activo.
+- La ruta pública nginx `/api/e2/m2/runs` devuelve HTTP 200 porque nginx encamina el prefijo a la ruta operativa; no se aplicó ningún cambio en esta tarea.
 - `WOS_M2_OUTPUT_ROOT` existe y contiene manifiestos legibles, por lo que no es la causa del HTTP 500.
 - No se confirmó que la ruta histórica `/home/suryka/modulo2/mdro-layer2-vue` sea la fuente Git activa.
 

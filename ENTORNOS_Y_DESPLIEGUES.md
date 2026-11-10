@@ -18,8 +18,8 @@
 - `automatic_action_allowed=false`.
 - Cinco módulos publicados y cinco workers vivos: Respiratorias, Genitourinarias, Piel/Partes Blandas, Síndrome Febril y Tuberculosis.
 - El objetivo documental indicado era exactamente cuatro módulos; la presencia de Tuberculosis es un conflicto activo, no se corrigió.
-- `/api/e2/m2/runs` respondió HTTP 500 por recurso no encontrado. La causa demostrada es el desacuerdo entre el backend activo, que expone `/api/m2/runs`, y el frontend E2, que solicita `/api/e2/m2/runs`; no es una ausencia de `WOS_M2_OUTPUT_ROOT`.
-- `/api/m2/runs` respondió HTTP 200 y devolvió runs disponibles. No se aplicó una corrección funcional en esta tarea.
+- En el backend directo `:8996`, `/api/e2/m2/runs` respondió HTTP 500 por recurso no encontrado y `/api/m2/runs` respondió HTTP 200. La causa demostrada es el desacuerdo de prefijos; no es una ausencia de `WOS_M2_OUTPUT_ROOT`.
+- La ruta pública nginx `/api/e2/m2/runs` respondió HTTP 200 y devolvió runs disponibles, por lo que el smoke público queda correcto aunque el contrato directo del backend siga inconsistente. No se aplicó una corrección funcional en esta tarea.
 
 ## Producción
 
