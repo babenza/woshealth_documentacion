@@ -42,6 +42,33 @@ Espacio liberado calculado por tamaños previos: `788155695` bytes, aproximadame
 
 Los elementos históricos de Respiratorias, ContratoComun, microbiología, releases, backups y outputs se preservan mientras no exista prueba de que son redundantes y no operativos.
 
-## Postcheck pendiente de cierre
+## Postcheck final
 
-El postcheck local se realizará sobre Git status, worktrees, documentación y ausencia de los targets eliminados. El postcheck remoto de HP-3 queda bloqueado por autenticación; Ubuntu/E2 se inspeccionó sin cambios.
+- Raíces de los cinco repositorios de aplicación: limpias y alineadas con sus upstream cuando existe upstream.
+- Worktrees E2 con cambios y rollback: preservados y sin publicación.
+- Referencias stale M1: podadas con `git worktree prune`; ramas y commits conservados.
+- Ubuntu/E2: servicios enabled/active; E2 root, health, runner y catálogo HTTP 200.
+- E2 M2: HTTP 500; no se declara PASS funcional.
+- Producción: raíz nginx y catálogo M1 respondieron HTTP 200; solo GET.
+- HP-3: bloqueado por autenticación SSH.
+
+## Flags
+
+```text
+CLEANUP_MASTER=FAIL
+LOCAL_CLEANUP=PASS
+HERRAMIENTAS_CONSOLIDATION=BLOCKED
+GIT_AUDIT=PASS
+GIT_SYNC=PASS
+DOC_REPOSITORY=PASS
+DOCUMENTATION=PASS
+UBUNTU_AUDIT=PASS
+UBUNTU_CLEANUP=BLOCKED
+HP3_AUDIT=BLOCKED
+HP3_CLEANUP=BLOCKED
+E2_POSTCHECK=FAIL
+PRODUCTION_UNTOUCHED=PASS
+SECRETS_EXPOSURE_CHECK=PASS
+CLINICAL_DATA_EXPOSURE_CHECK=PASS
+FILESYSTEM_POLICY=PASS
+```
