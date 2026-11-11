@@ -23,3 +23,14 @@ flowchart LR
 ## Contrato
 
 El código local define archivos por run, miembros, aislamientos, calidad, trazabilidad y claves `treatment_instance`/`idFarmaco`. La asociación no debe basarse en paciente o medicamento solos.
+
+## Estado diario actual
+
+El circuito real Windows → entrada E2 → Layer1/R → `final_tables` → Layer2 →
+publicación atómica está validado. El último run real produjo 185 aislados y
+0 alertas MDRO; el cero se confirmó con tablas no vacías, manifiesto válido,
+replay idempotente y publicación conservada.
+
+La operación posterior utiliza polling y watermark. El monitor de correo solo
+evalúa runs publicados con provenance real y está documentado en
+`M2_EMAIL_MONITOR.md`.
