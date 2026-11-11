@@ -23,31 +23,37 @@ visibles. Los estados son `LINKED`, `NO_M1_MATCH` y
 
 ## Limitación
 
-La disponibilidad de producción sigue fuera de alcance. La validación realizada
-en E2 no inventó correlaciones: las fixtures sintéticas actuales exponen
-claves M2 `SYN-PAT-*`, mientras la fuente M1 sintética disponible expone
-`SYN-M1M2-*`; por ello no se declara vínculo positivo en esos runs.
+La disponibilidad de producción sigue fuera de alcance. La validación E2 usa
+datos sintéticos explícitos y no representa pacientes reales ni causalidad
+terapéutica.
 
 ## Estado de la campaña MM29/R98
 
 La disponibilidad del feed real en E2 y el circuito diario M2 candidato sí han
-quedado validados. En los lotes reales utilizados no apareció una alerta MDRO
-positiva con correspondencia simultánea en M1; por ello el flujo browser real
-M2 → M1 → R98 permanece pendiente de un caso natural y no se declara como
-validado. La regla de matching sigue siendo estructurada: paciente RAW4 más
-episodio RAW1 validado, sin first match y sin asociación automática en caso
-ambiguo.
+quedado validados. No se ha observado una alerta MDRO positiva real con
+correspondencia simultánea en M1 (`REAL_MDRO_POSITIVE_OBSERVED=NO`). La
+validación funcional E2 se cerró con una fixture sintética compartida, sin
+elevar ese resultado sintético a evidencia clínica real.
 
 ## Entrega E2 2026-11-11
 
-- Backend: `2c5ff05` publicado en `origin/release/e2-mm17`.
-- Frontend: `9b50449` publicado en `origin/release/e2-mm17`.
-- E2 activo: backend `2c5ff05-mm2-context-20261111`, frontend
+- Backend: `34f0936` publicado en `origin/release/e2-mm17`.
+- Frontend: `96f76d3` publicado en `origin/release/e2-mm17`.
+- E2 activo: backend `34f0936-mdro-status-20261111`, frontend
   `9b50449-mm2-context-20261111`.
 - Smoke de servicios y navegador/UAT: PASS.
 - Rollback al release previo y restore al nuevo release: PASS.
 - Producción: intacta y solo lectura.
-- La ejecución activa observada en E2 contiene 507 aislamientos; R26 contiene
-  8. No se encontró en el output E2 disponible la ejecución esperada de 185,
-  por lo que `MASTER_GATE` permanece bloqueado y no se afirma una cobertura
-  de 185 ni un positivo real inexistente.
+- El run real `20261111T165416Z` contiene 185 aislamientos, 9 MDRO, 176
+  no-MDRO, 0 alertas y 16 aislamientos sin episodio resoluble.
+- El run QA compartido `SYN-M1M2-MM29-R98-SHARED-20261111` contiene 8
+  aislamientos, 3 MDRO, 5 no-MDRO, 4 contextos M1, 4 sin contexto y 2
+  aislamientos con múltiples alertas M1 del mismo episodio.
+- El caso QA incluye además un mismo paciente en otro episodio sin vínculo.
+- Formulación funcional: “Módulo 2 visualiza los aislamientos microbiológicos
+  con independencia de que cumplan criterios MDRO. Cuando un aislamiento y
+  una alerta de tratamiento de Módulo 1 comparten de forma estructurada
+  paciente y episodio, la interfaz permite navegación contextual bidireccional
+  entre ambos módulos. Esta asociación representa pertenencia al mismo
+  contexto asistencial y no implica causalidad entre el aislamiento y un
+  tratamiento concreto.”

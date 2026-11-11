@@ -86,5 +86,7 @@ independientes. El restore devuelve el monitor candidato a su estado anterior.
 
 ## Estado actual
 
-`EMAIL_SENT=NO` y `REASON=NO_REAL_MDRO` para el run real disponible. El monitor
-queda preparado para el primer positivo real futuro sin afirmar que exista uno.
+`EMAIL_SENT=NO` y `REASON=NO_REAL_MDRO` para el run real disponible;
+`M2_EMAIL_REAL_POSITIVE_READINESS=PASS`. La fixture QA sintética compartida no
+dispara correo. El monitor queda preparado para el primer positivo real futuro
+sin afirmar que exista uno.

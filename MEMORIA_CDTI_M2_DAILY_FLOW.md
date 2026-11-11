@@ -32,13 +32,14 @@ identificativos, secretos ni detalles internos de infraestructura.
 ## Actualización técnica 2026-11-11
 
 La publicación E2 de la integración M1↔M2 quedó versionada en backend
-`2c5ff05` y frontend `9b50449`, ambos en `origin/release/e2-mm17`. La interfaz
+`34f0936` y frontend `96f76d3`, ambos en `origin/release/e2-mm17`. La interfaz
 expone todos los aislamientos clasificados de la ejecución seleccionada y
 calcula el contexto M1 por paciente y episodio, conservando los casos sin
 correspondencia o sin episodio resoluble.
 
 La activación, el smoke, el UAT de navegador, el rollback y el restore en E2
-fueron satisfactorios. La evidencia disponible no contiene el lote de 185
-aislamientos y las fixtures sintéticas M1/M2 actuales usan identificadores de
-paciente distintos; por tanto, la aceptación de un positivo real continúa
-pendiente y `MASTER_GATE` no se eleva.
+fueron satisfactorios. El run real contiene 185 aislamientos y la fixture QA
+compartida permite reproducir la navegación M2→M1 con 4 vínculos, 2 alertas
+M1 para el mismo episodio y un episodio distinto sin vínculo. No se observó un
+positivo MDRO real ni se envió correo; `MASTER_GATE=PASS` se refiere al gate
+técnico/funcional E2 y no a una afirmación clínica real.

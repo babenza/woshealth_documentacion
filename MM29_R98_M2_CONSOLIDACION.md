@@ -7,14 +7,14 @@ de infraestructura.
 ## Estado de aceptación
 
 - `M2_DAILY_PIPELINE_READINESS=PASS`.
-- `M2_REAL_POSITIVE_MATCH_READINESS=WAITING_FOR_NATURAL_REAL_CASE`.
-- `MASTER_GATE=BLOCKED_REAL_WORLD_POSITIVE_MATCH_NOT_AVAILABLE`.
-- `READY_FOR_JUAN_VALIDATION=NO`.
+- `M2_REAL_POSITIVE_MATCH_READINESS=NOT_OBSERVED_REAL_CASE`.
+- `MASTER_GATE=PASS` (gate técnico/funcional E2; sin afirmar un positivo real).
+- `READY_FOR_JUAN_VALIDATION=YES`.
 - `JUAN_ACTION_REQUIRED=NONE`.
 
-El estado no representa un defecto técnico: el circuito diario está operativo
-y validado. La condición pendiente es la aparición natural de un caso MDRO
-real con correspondencia M1 segura.
+El circuito diario está operativo y validado. La observación de un caso MDRO
+real con correspondencia M1 segura queda como evidencia clínica futura y no es
+un requisito para validar la fixture sintética QA controlada.
 
 ## Arquitectura diaria demostrada
 
@@ -91,8 +91,9 @@ dataset vacío, un fallo de R, un fallo de parser ni un fallo de Layer2.
 ## R98 y validación pendiente
 
 La evidencia funcional previa de R98 se conserva. La navegación browser del
-caso real M2→M1→R98 no se declara hasta que aparezca un positivo MDRO real con
-correspondencia M1 segura.
+caso real M2→M1→R98 no se presenta como caso clínico real: el UAT cerrado usa
+la identidad sintética compartida `SYN-M1M2-MM29-R98-SHARED-20261111` y deja
+visible la etiqueta de caso sintético.
 
 ## Evidencias
 
@@ -103,7 +104,7 @@ memoria se mantiene separado en `MEMORIA_CDTI_M2_DAILY_FLOW.md`.
 ## Cierre técnico E2 2026-11-11
 
 Se publicó el ajuste de integración contextual M1↔M2 en
-`origin/release/e2-mm17`: backend `2c5ff05` y frontend `9b50449`. El enlace
+`origin/release/e2-mm17`: backend `34f0936` y frontend `96f76d3`. El enlace
 visible usa paciente+episodio, conserva múltiples alertas M1 del mismo
 episodio, muestra todos los aislamientos clasificados y no interpreta la
 relación como causalidad tratamiento-cultivo.
@@ -112,8 +113,8 @@ La activación E2, el smoke de backend/frontend, el UAT de navegador, el
 rollback al release previo y el restore al release nuevo fueron PASS. La
 producción no se modificó.
 
-El E2 actualmente accesible no contiene el lote de 185 aislamientos que figura
-en la validación real anterior: el run activo muestra 507 y R26 muestra 8.
-Además, las claves de paciente sintéticas M2 y M1 disponibles no coinciden.
-Esta evidencia impide declarar `MASTER_GATE=PASS`; no se alteran fixtures ni
-se inventa una correspondencia.
+El E2 accesible expone el run real de 185 y una fixture QA compartida. La
+fixture fue creada en un directorio QA separado a partir de una salida generada
+por la lógica M2, con claves comunes para M1/M2, casos MDRO y no-MDRO, varios
+aislamientos, alertas múltiples y episodio distinto sin vínculo. El run real
+no se modificó.

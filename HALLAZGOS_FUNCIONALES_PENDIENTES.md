@@ -27,6 +27,8 @@ Estos puntos fueron observados, pero NO se modificaron en esta tarea:
 14. `M2_CONTEXT_LINK_FINDING=IMPLEMENTED_PATIENT_EPISODE`: el enlace
     contextual M1↔M2 ya no usa tratamiento/fármaco como clave y muestra todos
     los aislamientos clasificados.
-15. `M2_FIXTURE_IDENTITY_FINDING=BLOCKED_DATA_ALIGNMENT`: el E2 disponible no
-    contiene el lote de 185 esperado y las claves sintéticas M2/M1 no coinciden;
-    no se inventó un vínculo ni se modificaron fixtures.
+15. `M2_FIXTURE_IDENTITY_FINDING=RESOLVED_SHARED_QA`: se creó en E2/QA una
+    única fixture sintética compartida `SYN-M1M2-MM29-R98-SHARED-20261111`.
+    Sus claves estructuradas paciente+episodio son comunes a M1/M2 y cubren
+    MDRO, no-MDRO, múltiples aislamientos, múltiples alertas y episodio
+    distinto sin vínculo. El run real 185 no se modificó.
