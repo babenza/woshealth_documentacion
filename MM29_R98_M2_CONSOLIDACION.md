@@ -99,3 +99,21 @@ correspondencia M1 segura.
 La trazabilidad completa requisito → implementación → validación → estado se
 conserva en `HERRAMIENTAS/evidence/mm29-r98-20261106.md`. El bloque apto para
 memoria se mantiene separado en `MEMORIA_CDTI_M2_DAILY_FLOW.md`.
+
+## Cierre técnico E2 2026-11-11
+
+Se publicó el ajuste de integración contextual M1↔M2 en
+`origin/release/e2-mm17`: backend `2c5ff05` y frontend `9b50449`. El enlace
+visible usa paciente+episodio, conserva múltiples alertas M1 del mismo
+episodio, muestra todos los aislamientos clasificados y no interpreta la
+relación como causalidad tratamiento-cultivo.
+
+La activación E2, el smoke de backend/frontend, el UAT de navegador, el
+rollback al release previo y el restore al release nuevo fueron PASS. La
+producción no se modificó.
+
+El E2 actualmente accesible no contiene el lote de 185 aislamientos que figura
+en la validación real anterior: el run activo muestra 507 y R26 muestra 8.
+Además, las claves de paciente sintéticas M2 y M1 disponibles no coinciden.
+Esta evidencia impide declarar `MASTER_GATE=PASS`; no se alteran fixtures ni
+se inventa una correspondencia.

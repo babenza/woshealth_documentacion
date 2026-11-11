@@ -21,3 +21,12 @@ Estos puntos fueron observados, pero NO se modificaron en esta tarea:
 
 12. `M2_ROUTE_CONTRACT_FINDING=FUNCTIONAL_TECHNICAL_DEBT`: el backend directo y el encaminamiento público usan prefijos distintos; la ruta pública funciona. Próxima tarea: añadir pruebas de contrato para backend directo y nginx, verificar `GET /api/e2/m2/runs` y `/api/m2/runs`, y normalizar un único prefijo sin modificar producción durante esta tarea.
 13. `TUBERCULOSIS_SCOPE_FINDING=FUNCTIONAL_CONFIGURATION_MISMATCH`: r98 publica cinco módulos aunque el objetivo declarado contiene exactamente cuatro. Próxima tarea: confirmar el catálogo autorizado y ajustar de forma coordinada catálogo, runner, frontend y pruebas; no retirar bundle, worker, registro ni UI durante la limpieza.
+
+## Actualización E2 2026-11-11
+
+14. `M2_CONTEXT_LINK_FINDING=IMPLEMENTED_PATIENT_EPISODE`: el enlace
+    contextual M1↔M2 ya no usa tratamiento/fármaco como clave y muestra todos
+    los aislamientos clasificados.
+15. `M2_FIXTURE_IDENTITY_FINDING=BLOCKED_DATA_ALIGNMENT`: el E2 disponible no
+    contiene el lote de 185 esperado y las claves sintéticas M2/M1 no coinciden;
+    no se inventó un vínculo ni se modificaron fixtures.

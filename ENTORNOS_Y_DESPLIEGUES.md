@@ -16,10 +16,17 @@
 - Catálogo HTTP: `r98`.
 - `production_approved=false`.
 - `automatic_action_allowed=false`.
+- Backend activo: release `2c5ff05-mm2-context-20261111`.
+- Frontend activo: release `9b50449-mm2-context-20261111`.
+- Activación E2, smoke, rollback y restore verificados el 2026-11-11.
+- UAT de navegador confirmó la vista de aislamientos, sus contadores y el
+  contexto paciente/episodio.
 - Cinco módulos publicados y cinco workers vivos: Respiratorias, Genitourinarias, Piel/Partes Blandas, Síndrome Febril y Tuberculosis.
 - El objetivo documental indicado era exactamente cuatro módulos; la presencia de Tuberculosis es un conflicto activo, no se corrigió.
-- En el backend directo `:8996`, `/api/e2/m2/runs` respondió HTTP 500 por recurso no encontrado y `/api/m2/runs` respondió HTTP 200. La causa demostrada es el desacuerdo de prefijos; no es una ausencia de `WOS_M2_OUTPUT_ROOT`.
-- La ruta pública nginx `/api/e2/m2/runs` respondió HTTP 200 y devolvió runs disponibles, por lo que el smoke público queda correcto aunque el contrato directo del backend siga inconsistente. No se aplicó una corrección funcional en esta tarea.
+- El backend directo `:8996` respondió correctamente en health y en los
+  endpoints M2 usados por el dashboard (`/api/m2/runs`, summary y links).
+- El run activo disponible en E2 contiene 507 aislamientos; R26 contiene 8.
+  La ejecución esperada de 185 no está presente en el output accesible.
 
 ## Producción
 
