@@ -81,8 +81,17 @@ La navegación continúa siendo bidireccional por paciente+episodio y conserva
 el contexto al entrar en R98. La fixture sintética compartida mantiene casos
 QA visibles separados de los datos reales.
 
-La corrección está versionada en backend `a1887aa` y frontend `af42889`,
-publicados en `origin/release/e2-mm17`. La documentación local queda en
-`da73933`. El despliegue E2 y el UAT posterior quedan pendientes porque
-`10.100.10.203:22` no es alcanzable desde la estación de trabajo en esta
-ejecución (`Connection timed out`); no se modificó producción.
+La corrección está versionada en backend `9a4f05e` y frontend `4e2b21c`,
+publicados sin force push en `origin/release/e2-mm17`. El backend propaga
+`organism_normalized` como último alias de `organism_display_name` cuando las
+columnas de etiqueta de Layer1 no están presentes; los identificadores
+`sample_pk` y `organism_pk` permanecen separados como trazabilidad técnica.
+La UI M1/M2 conserva el fallback `No disponible` cuando el feed no contiene
+organismo y no convierte IDs en nombres clínicos.
+
+El despliegue E2 de la corrección y la validación posterior fueron PASS:
+smoke, UAT API, UAT browser, navegación bidireccional M1↔M2, recorrido R98
+completo, reevaluación tras modificar el tratamiento, rollback y restore.
+El run real mantuvo 185 aislamientos, 9 MDRO y 176 no-MDRO; dos filas sin
+organismo de origen permanecen sin etiqueta por ausencia legítima de fuente.
+Producción no se modificó.

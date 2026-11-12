@@ -10,7 +10,7 @@ de infraestructura.
 - `M2_REAL_POSITIVE_MATCH_READINESS=NOT_OBSERVED_REAL_CASE`.
 - `MASTER_GATE=PASS` (gate técnico/funcional E2; sin afirmar un positivo real).
 - `READY_FOR_JUAN_VALIDATION=YES`.
-- `JUAN_ACTION_REQUIRED=NONE`.
+- `JUAN_ACTION_REQUIRED=VALIDATE`.
 
 El circuito diario está operativo y validado. La observación de un caso MDRO
 real con correspondencia M1 segura queda como evidencia clínica futura y no es
@@ -112,6 +112,36 @@ relación como causalidad tratamiento-cultivo.
 La activación E2, el smoke de backend/frontend, el UAT de navegador, el
 rollback al release previo y el restore al release nuevo fueron PASS. La
 producción no se modificó.
+
+## Corrección final de etiquetas clínicas 2026-11-12
+
+La pérdida observada de `organism_display_name` se localizó en el aliasado del
+contrato backend cuando el output publicado conservaba `organism_normalized`
+pero no las columnas de etiqueta de Layer1. La corrección no cambia la lógica
+clínica ni el runtime: añade `organism_normalized` como último fallback del
+modelo de presentación y conserva `sample_pk`/`organism_pk` como identidad
+técnica separada.
+
+- Backend: `9a4f05e`, frontend: `4e2b21c`, ambos publicados en
+  `origin/release/e2-mm17`.
+- E2 activo tras restore: backend
+  `9a4f05e-mm29-r98-label-fix-20261112`, frontend
+  `4e2b21c-mm29-r98-label-fix-20261112`.
+- Backend SHA-256: `6c944cf9c3c1aed6d75a321b9bfcc9b3372161d4df96da6c1798fee338956d9f`.
+- Frontend `app.js` SHA-256:
+  `53ce64d24cef52c8440e7217a2bb46c65bd0fbd64d31da5823e3e2fb1f3cc876`.
+- La fixture sintética compartida conserva su SHA-256
+  `35f1d12678441a76202bd5e5c53f3399510234cb86790a1605f9968bffee8839`.
+- UAT M1/M2 muestra `STAPHYLOCOCCUS AUREUS`, muestra `synthetic`, MDRO
+  `MRSA`, S/R/I y las claves técnicas por separado; la QA E. coli muestra
+  `ESCHERICHIA COLI`.
+- R98 completo y reevaluación posterior a cambio de tratamiento fueron
+  completados en navegador sobre datos sintéticos.
+- Rollback al backend `a1887aa-mm29-r98-20261112-rebuilt` y frontend
+  `af42889-mm29-r98-20261112`, seguido de restore al candidato corregido:
+  PASS.
+- Producción permanece intacta y el repositorio documental sigue sin remoto
+  oficial configurado; no se inventa URL ni se realiza force push.
 
 El E2 accesible expone el run real de 185 y una fixture QA compartida. La
 fixture fue creada en un directorio QA separado a partir de una salida generada
