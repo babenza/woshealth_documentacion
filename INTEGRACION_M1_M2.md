@@ -80,3 +80,9 @@ siguen siendo conjuntos vacíos y `No informado` queda reservado a ausencia.
 La navegación continúa siendo bidireccional por paciente+episodio y conserva
 el contexto al entrar en R98. La fixture sintética compartida mantiene casos
 QA visibles separados de los datos reales.
+
+La corrección está versionada en backend `a1887aa` y frontend `af42889`,
+publicados en `origin/release/e2-mm17`. La documentación local queda en
+`da73933`. El despliegue E2 y el UAT posterior quedan pendientes porque
+`10.100.10.203:22` no es alcanzable desde la estación de trabajo en esta
+ejecución (`Connection timed out`); no se modificó producción.
