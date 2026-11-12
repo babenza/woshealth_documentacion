@@ -140,8 +140,9 @@ técnica separada.
 - Rollback al backend `a1887aa-mm29-r98-20261112-rebuilt` y frontend
   `af42889-mm29-r98-20261112`, seguido de restore al candidato corregido:
   PASS.
-- Producción permanece intacta y el repositorio documental sigue sin remoto
-  oficial configurado; no se inventa URL ni se realiza force push.
+- Producción permanece intacta. La publicación documental se completa en el
+  remoto oficial `https://github.com/babenza/woshealth_documentacion`, sin
+  force push.
 
 El E2 accesible expone el run real de 185 y una fixture QA compartida. La
 fixture fue creada en un directorio QA separado a partir de una salida generada
@@ -172,3 +173,40 @@ reproducible en este host porque los tests históricos de los ejecutores PROA
 requieren un ejecutable `python` que no está instalado; no es un fallo del
 código modificado. E2 quedó saludable tras el despliegue y producción sigue
 intacta.
+
+## Publicación QA M1↔M2 visible en la lista normal — 2026-11-12
+
+La corrección de visibilidad QA queda publicada en E2 con backend `c615b8a`
+y frontend `f018b4d`, ambos en `origin/release/e2-mm17`. La lista normal de
+M1 muestra por defecto dos casos sintéticos con nombre humano, sin depender de
+IDs técnicos ni de una URL profunda:
+
+| Caso visible | Paciente / episodio | Run M2 | Contexto |
+| --- | --- | --- | --- |
+| `CASO QA M1-M2 · NO MDRO` | `SYN-M1M2-CASE4-001` / `SYN-M1M2-CASE4-EP1` | `SYN-M1M2-MM29-R98-QA-NO-MDRO-20261112` | `ESCHERICHIA COLI`, `Orina - Urocultivo`, `NOT_MDR`, S=`AMOXICILLIN`, `CEFTRIAXONE`, R/I vacíos |
+| `CASO QA M1-M2 · MDRO` | `SYN-M1M2-CASE2-001` / `SYN-M1M2-CASE2-EP1` | `SYN-M1M2-MM29-R98-SHARED-20261111` | `STAPHYLOCOCCUS AUREUS`, muestra `synthetic`, `MRSA`, S=`MEROPENEM`, R=`CEFOXITINA`, `CEFTRIAXONA`, I vacío |
+
+Ambos casos se encuentran desde `http://10.100.10.203/e2/`, se abren desde la
+lista M1 sin búsqueda previa y conservan el banner de microbiología antes,
+durante y después del recorrido R98. El banner deja explícito que la relación
+es contextual por paciente/episodio y no atribuye causalidad entre aislamiento
+y tratamiento. Se verificaron las rutas M1→M2 y M2→M1, recarga de página,
+reevaluación y retorno con `patientId`, `episodeId`/`assistanceId`, `chapterId`
+y `runId`.
+
+La suite backend completa quedó en `200 tests, 0 failures, 0 errors, 15
+skipped`; la suite frontend completa en `27 suites, 241 tests`; y
+`npm run build:e2` produjo el build `b3101c20737ee817`. La huella desplegada
+del backend es
+`df54c6122cd42b5c93e61351a9f42b197e40a424534b2507e948f4cfee03bd7e` y la de
+`app.js` es
+`87f04eaafc23f728ec6a3a059cc41261747f53976ce62e6261ac6f7756b04329`.
+
+El rollback a los destinos respaldados
+`9a4f05e-mm29-r98-label-fix-20261112` / `4e2b21c-mm29-r98-label-fix-20261112`
+y el restore a `c615b8a-mm29-r98-qa-labels-20261112` /
+`f018b4d-mm29-r98-qa-labels-20261112` fueron PASS. El fixture se mantuvo en
+el área QA aislada; no se tocó producción, el run real ni el monitor de email.
+El repositorio documental oficial es
+`https://github.com/babenza/woshealth_documentacion`; esta sección corrige el
+estado histórico que indicaba que no había remoto.

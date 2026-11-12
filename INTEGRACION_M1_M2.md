@@ -95,3 +95,32 @@ completo, reevaluación tras modificar el tratamiento, rollback y restore.
 El run real mantuvo 185 aislamientos, 9 MDRO y 176 no-MDRO; dos filas sin
 organismo de origen permanecen sin etiqueta por ausencia legítima de fuente.
 Producción no se modificó.
+
+## Casos QA visibles y persistencia completa — 2026-11-12
+
+E2 publica dos casos sintéticos encontrables desde la lista M1 normal en
+`http://10.100.10.203/e2/`:
+
+- `CASO QA M1-M2 · NO MDRO`: paciente
+  `SYN-M1M2-CASE4-001`, episodio `SYN-M1M2-CASE4-EP1`, run
+  `SYN-M1M2-MM29-R98-QA-NO-MDRO-20261112`, `ESCHERICHIA COLI`, muestra
+  `Orina - Urocultivo`, clase `NOT_MDR`, S=`AMOXICILLIN, CEFTRIAXONE`, R/I
+  vacíos.
+- `CASO QA M1-M2 · MDRO`: paciente `SYN-M1M2-CASE2-001`, episodio
+  `SYN-M1M2-CASE2-EP1`, run `SYN-M1M2-MM29-R98-SHARED-20261111`,
+  `STAPHYLOCOCCUS AUREUS`, muestra `synthetic`, clase `MRSA`, S=`MEROPENEM`,
+  R=`CEFOXITINA, CEFTRIAXONA`, I vacío.
+
+Los nombres humanos aparecen por defecto, junto al marcador sintético y la
+clasificación MDRO/NO MDRO. El contexto permanece visible en M1 antes de
+R98, durante la evaluación completa, en la recomendación persistida y tras
+recargar. M1 abre el aislamiento exacto en M2; M2 vuelve a M1 con paciente,
+episodio y run conservados. La UI declara siempre que es contexto compartido,
+no causalidad tratamiento-cultivo.
+
+El cambio está en backend `c615b8a` y frontend `f018b4d`, desplegado en E2
+con backend `c615b8a-mm29-r98-qa-labels-20261112` y frontend
+`f018b4d-mm29-r98-qa-labels-20261112`. Backend completo: `200 tests, 0
+failures, 0 errors, 15 skipped`; frontend completo: `27 suites, 241 tests`;
+build E2: `b3101c20737ee817`. Rollback y restore controlados fueron PASS.
+Producción, datos reales y monitor de email permanecieron intactos.
