@@ -57,3 +57,26 @@ elevar ese resultado sintético a evidencia clínica real.
   entre ambos módulos. Esta asociación representa pertenencia al mismo
   contexto asistencial y no implica causalidad entre el aislamiento y un
   tratamiento concreto.”
+
+## Presentación clínica MM29/R98 — 2026-11-12
+
+La trazabilidad de etiquetas queda separada de la identidad técnica. Layer1
+produce `sample_type_model` desde `muestra_label` y produce
+`germen_label_original`, `germen_label` y `germen_normalized` en la tabla de
+organismos. El output Layer2 conserva `sample_type` y `organism_normalized`,
+pero la versión QA observada también podía llegar solo con `sample_pk` y
+`organism_pk`; esa pérdida se localiza en el contrato de entrada/publicación de
+Layer2, no en la generación de las claves de Layer1.
+
+El backend publica `sample_display_name` y `organism_display_name` sin
+sobrescribir `sample_pk` ni `organism_pk`. La UI muestra primero la etiqueta
+clínica y deja los identificadores técnicos en una sección secundaria de
+trazabilidad. Si el feed no entrega etiqueta, se muestra `No disponible` y no
+se convierte un ID surrogate en texto clínico.
+
+El banner persistente de M1 conserva, para cada aislamiento, microorganismo,
+muestra, fecha, S/R/I y semántica `MDRO`/`NO MDRO`; los valores S/R/I vacíos
+siguen siendo conjuntos vacíos y `No informado` queda reservado a ausencia.
+La navegación continúa siendo bidireccional por paciente+episodio y conserva
+el contexto al entrar en R98. La fixture sintética compartida mantiene casos
+QA visibles separados de los datos reales.

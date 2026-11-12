@@ -59,3 +59,18 @@ La suite frontend completa pasó 235 tests. Las pruebas backend focales de
 Módulo 2 pasaron; el conjunto backend completo mantiene un bloqueo ambiental
 conocido en Windows por la ausencia del ejecutable `python` requerido por
 tests históricos de ejecución PROA.
+
+## Actualización técnica 2026-11-12 — etiquetas y contexto clínico
+
+La presentación clínica no utiliza `sample_pk` ni `organism_pk` como nombres.
+La fuente Layer1 conserva el linaje `muestra_label` → `sample_type_model` y
+`germen_label_original`/`germen_label` → `germen_normalized`; Layer2 propaga
+`sample_type` y `organism_normalized` cuando están disponibles. El backend y
+la UI mantienen estos valores separados de las claves técnicas y aplican un
+fallback explícito `No disponible`.
+
+En M1 el aviso de microbiología permanece fuera del iframe de R98 y se repite
+por cada aislamiento, con muestra, microorganismo, fecha, S/R/I y clasificación
+MDRO. La asociación se limita al contexto paciente+episodio y no atribuye
+causalidad al tratamiento. La prueba QA debe exponer en la lista M1 el caso
+NO-MDRO y el caso MDRO como sintéticos, con navegación M1↔M2 y retorno estable.
