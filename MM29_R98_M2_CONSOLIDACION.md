@@ -124,8 +124,10 @@ no se modificó.
 Se añadió una copia QA aislada `SYN-M1M2-MM29-R98-ECOLI-QA` sin modificar el
 run compartido ni el run real. Contiene 9 aislamientos, incluye el caso
 sintético `SYN-M1M2-CASE4-001`/`SYN-M1M2-CASE4-EP1` y verifica un antibiograma
-estructurado con `S=AMOXICILLIN, CEFTRIAXONE`, `R=[]` e `I=[]`; los estados
-vacíos se muestran como `Sin elementos`.
+estructurado con `S=AMOXICILLIN, CEFTRIAXONE`, `R=[]` e `I=[]`. Un conjunto
+vacío confirmado se renderiza con la etiqueta S/R/I y contenido vacío; no se
+convierte en `Sin elementos`, `No informado` ni `—`. `No informado` se reserva
+para un valor ausente o desconocido.
 
 La navegación M2 → lista M1 → evaluación conserva paciente, episodio y
 `runId` histórico. En R98 queda visible el aviso persistente de microbiología,

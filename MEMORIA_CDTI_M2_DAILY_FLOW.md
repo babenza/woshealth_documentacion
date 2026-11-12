@@ -48,8 +48,10 @@ técnico/funcional E2 y no a una afirmación clínica real.
 
 La validación QA añadió el caso sintético E. coli
 `SYN-M1M2-CASE4-001`/`SYN-M1M2-CASE4-EP1` en un run aislado. El contrato
-estructurado conserva `S=AMOXICILLIN, CEFTRIAXONE`, `R=[]` e `I=[]` y la
-interfaz no convierte los estados vacíos en “No informado”. El contexto M1/M2
+estructurado conserva `S=AMOXICILLIN, CEFTRIAXONE`, `R=[]` e `I=[]`. En la
+interfaz, los conjuntos vacíos confirmados conservan la etiqueta S/R/I con
+contenido vacío; `No informado` solo representa un valor ausente o desconocido.
+El contexto M1/M2
 se conserva al pasar del histórico M2 a la lista M1 y a R98 mediante paciente,
 episodio y `runId`, sin inferir causalidad tratamiento-cultivo.
 
