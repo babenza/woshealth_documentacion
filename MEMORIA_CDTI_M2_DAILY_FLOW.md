@@ -43,3 +43,17 @@ compartida permite reproducir la navegación M2→M1 con 4 vínculos, 2 alertas
 M1 para el mismo episodio y un episodio distinto sin vínculo. No se observó un
 positivo MDRO real ni se envió correo; `MASTER_GATE=PASS` se refiere al gate
 técnico/funcional E2 y no a una afirmación clínica real.
+
+## Actualización técnica 2026-11-12
+
+La validación QA añadió el caso sintético E. coli
+`SYN-M1M2-CASE4-001`/`SYN-M1M2-CASE4-EP1` en un run aislado. El contrato
+estructurado conserva `S=AMOXICILLIN, CEFTRIAXONE`, `R=[]` e `I=[]` y la
+interfaz no convierte los estados vacíos en “No informado”. El contexto M1/M2
+se conserva al pasar del histórico M2 a la lista M1 y a R98 mediante paciente,
+episodio y `runId`, sin inferir causalidad tratamiento-cultivo.
+
+La suite frontend completa pasó 235 tests. Las pruebas backend focales de
+Módulo 2 pasaron; el conjunto backend completo mantiene un bloqueo ambiental
+conocido en Windows por la ausencia del ejecutable `python` requerido por
+tests históricos de ejecución PROA.

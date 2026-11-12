@@ -118,3 +118,25 @@ fixture fue creada en un directorio QA separado a partir de una salida generada
 por la lógica M2, con claves comunes para M1/M2, casos MDRO y no-MDRO, varios
 aislamientos, alertas múltiples y episodio distinto sin vínculo. El run real
 no se modificó.
+
+## Cierre QA E. coli y navegación persistente 2026-11-12
+
+Se añadió una copia QA aislada `SYN-M1M2-MM29-R98-ECOLI-QA` sin modificar el
+run compartido ni el run real. Contiene 9 aislamientos, incluye el caso
+sintético `SYN-M1M2-CASE4-001`/`SYN-M1M2-CASE4-EP1` y verifica un antibiograma
+estructurado con `S=AMOXICILLIN, CEFTRIAXONE`, `R=[]` e `I=[]`; los estados
+vacíos se muestran como `Sin elementos`.
+
+La navegación M2 → lista M1 → evaluación conserva paciente, episodio y
+`runId` histórico. En R98 queda visible el aviso persistente de microbiología,
+el aislamiento `ESCHERICHIA COLI`, sus valores S/R/I y la semántica de contexto
+por paciente/episodio sin atribución causal. Commits frontend publicados en
+`origin/release/e2-mm17`: `11a3acd`, `d61e83d`, `d0b72b7`. Backend vigente:
+`1a780f0`.
+
+La suite frontend completa permanece en `27 suites / 235 tests PASS`; las
+pruebas backend focales M2 pasan. La suite backend completa en Windows no es
+reproducible en este host porque los tests históricos de los ejecutores PROA
+requieren un ejecutable `python` que no está instalado; no es un fallo del
+código modificado. E2 quedó saludable tras el despliegue y producción sigue
+intacta.
