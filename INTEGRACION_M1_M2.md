@@ -124,3 +124,19 @@ con backend `c615b8a-mm29-r98-qa-labels-20261112` y frontend
 failures, 0 errors, 15 skipped`; frontend completo: `27 suites, 241 tests`;
 build E2: `b3101c20737ee817`. Rollback y restore controlados fueron PASS.
 Producción, datos reales y monitor de email permanecieron intactos.
+
+## Presentación microbiológica por defecto — 2026-11-13
+
+La corrección visual posterior mantiene la integración M1↔M2 y solo cambia la
+presentación del contexto microbiológico: cada aislamiento aparece por defecto
+en una tarjeta clínica compacta expandida, sin requerir un clic para mostrar
+microorganismo, muestra, fecha, MDRO/no-MDRO y S/R/I. Los identificadores
+técnicos quedan bajo `Trazabilidad`, como información secundaria. Se conservan
+las tarjetas independientes para múltiples aislamientos y la semántica de
+conjuntos S/R/I vacíos frente a valores no informados.
+
+La validación browser de los dos casos sintéticos confirmó la persistencia del
+contexto durante el recorrido R98, la navegación Atrás/Modificar tratamiento,
+la segunda recomendación y la navegación por teclado. El rollback al release
+previo y la restauración del candidato mantuvieron el endpoint E2 disponible;
+backend, fixture y producción no se modificaron.

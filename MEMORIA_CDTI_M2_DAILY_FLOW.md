@@ -74,3 +74,18 @@ por cada aislamiento, con muestra, microorganismo, fecha, S/R/I y clasificación
 MDRO. La asociación se limita al contexto paciente+episodio y no atribuye
 causalidad al tratamiento. La prueba QA debe exponer en la lista M1 el caso
 NO-MDRO y el caso MDRO como sintéticos, con navegación M1↔M2 y retorno estable.
+
+## Actualización funcional 2026-11-13 — contexto microbiológico por defecto
+
+La presentación M1 muestra ahora por defecto una tarjeta compacta expandida
+para cada aislamiento. Incluye microorganismo, muestra, fecha, clasificación
+MDRO/no-MDRO y S/R/I sin exigir la apertura de un enlace de evidencia. La
+trazabilidad técnica queda secundaria y la redacción principal es clínica.
+La tarjeta se conserva antes, durante y después de R98, al volver atrás, al
+modificar el tratamiento y en la reevaluación; la relación sigue siendo
+contextual y no causal.
+
+La explicación funcional completa, separando recepción, Capa 1, Capa 2,
+responsabilidad del aviso, papel web, papel profesional, asociación M1 y
+causalidad terapéutica, queda en
+`MEMORIA_M2_FUNCTIONAL_EXPLANATION.md`.
