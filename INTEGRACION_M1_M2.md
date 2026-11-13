@@ -140,3 +140,23 @@ contexto durante el recorrido R98, la navegación Atrás/Modificar tratamiento,
 la segunda recomendación y la navegación por teclado. El rollback al release
 previo y la restauración del candidato mantuvieron el endpoint E2 disponible;
 backend, fixture y producción no se modificaron.
+
+## Cierre operativo E2 y determinismo temporal — 2026-11-13
+
+El único fallo backend sensible al calendario se corrigió mediante un reloj
+controlable en pruebas; el reloj por defecto sigue siendo el de operación
+`Europe/Madrid`. La matriz cubre día actual, día anterior, múltiples runs,
+históricos y cambios de día, mes, año y zona horaria, sin modificar la lógica
+clínica ni la selección operativa. El cambio backend corresponde a `b16bad7`.
+
+El backend `b16bad7` y el frontend `c0ff895` quedaron restaurados mediante los
+servicios E2 normales. El rollback al release anterior y el restore del
+candidato se verificaron con ambos servicios activos, salud backend UP,
+`/e2/`, `/e2/m2` y `/e2/proa` disponibles, releases candidatas correctas y sin
+proceso temporal duplicado. Producción y el monitor de email permanecieron
+intactos.
+
+La validación browser final confirmó el contexto microbiológico MDRO visible
+por defecto, la recomendación R98, la persistencia técnica, la reevaluación y
+la conservación del contexto al volver atrás. El resultado clínico de prueba
+fue `Reevaluar vancomicina antes de añadir otro antibiótico`.

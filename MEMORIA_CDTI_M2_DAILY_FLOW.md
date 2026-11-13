@@ -89,3 +89,16 @@ La explicación funcional completa, separando recepción, Capa 1, Capa 2,
 responsabilidad del aviso, papel web, papel profesional, asociación M1 y
 causalidad terapéutica, queda en
 `MEMORIA_M2_FUNCTIONAL_EXPLANATION.md`.
+
+## Actualización técnica 2026-11-13 — determinismo temporal
+
+El único fallo backend sensible a la fecha quedó reproducido y corregido sin
+modificar la lógica clínica ni la selección operativa. Las pruebas inyectan un
+reloj controlable en `M2DatasetService`; el comportamiento de producto conserva
+el reloj de operación `Europe/Madrid`. La matriz cubre el mismo día, múltiples
+ejecuciones, días anteriores, históricos y transiciones de día, mes, año y
+UTC→Europe/Madrid.
+
+La suite backend completa quedó en `201 tests, 0 failures, 0 errors, 15
+skipped`. La explicación funcional de este documento y de
+`MEMORIA_M2_FUNCTIONAL_EXPLANATION.md` permanece sin cambios de alcance.
