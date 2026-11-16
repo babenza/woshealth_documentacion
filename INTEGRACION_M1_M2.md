@@ -160,3 +160,30 @@ La validación browser final confirmó el contexto microbiológico MDRO visible
 por defecto, la recomendación R98, la persistencia técnica, la reevaluación y
 la conservación del contexto al volver atrás. El resultado clínico de prueba
 fue `Reevaluar vancomicina antes de añadir otro antibiótico`.
+
+## Cierre de nomenclatura visible y contraste microbiológico — 2026-11-16
+
+La nomenclatura visible de E2 queda cerrada sin modificar rutas, APIs, DTOs,
+servicios, contratos ni identificadores técnicos:
+
+- la acción de cada tarjeta M1 es `Evaluar caso`;
+- M1 se presenta como `IA-Optimizer`;
+- el acceso y la pantalla M2 se presentan como `IA-Monitor`;
+- el retorno M2 usa `Ir a Página principal`;
+- el bloque de relación M2 usa `Vínculo con IA-Optimizer`.
+
+La corrección visual del modo oscuro elimina el fallback claro del resumen
+clínico microbiológico interno y lo integra con los tokens oscuros R98. Se
+verificó legibilidad de microorganismo, muestra, fecha, clasificación, S/R/I,
+botones y enlaces en los casos sintéticos MDRO y no-MDRO; se conservaron la
+semántica S/R/I, el contexto paciente+episodio y la persistencia durante R98,
+atrás, modificación y reevaluación.
+
+El frontend `199ccca` pasó la suite completa (`27 suites, 245 tests`), las
+pruebas focales de etiquetas/contraste (`53 tests`) y `npm run build:e2`
+(`f3cb3723bd1fe23c`). Se publicó en `origin/release/e2-mm17` y quedó activo
+en E2. Smoke, browser/UAT, navegación bidireccional, teclado, ancho reducido,
+recarga, rollback y restore fueron PASS. El backend no cambió y conserva la
+regresión validada (`201 tests, 0 failures, 0 errors, 15 skipped`).
+
+Producción, el monitor de email, M2 y la lógica clínica permanecieron intactos.

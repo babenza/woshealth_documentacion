@@ -90,6 +90,20 @@ responsabilidad del aviso, papel web, papel profesional, asociación M1 y
 causalidad terapéutica, queda en
 `MEMORIA_M2_FUNCTIONAL_EXPLANATION.md`.
 
+## Nomenclatura visible E2 — 2026-11-16
+
+En la interfaz, el Módulo 1 se presenta como `IA-Optimizer` y el Módulo 2
+como `IA-Monitor`. Las tarjetas de entrada usan `Evaluar caso`, el retorno
+desde M2 usa `Ir a Página principal` y la relación visible se denomina
+`Vínculo con IA-Optimizer`. Esta capa es exclusivamente de presentación; la
+documentación conserva M1/M2, rutas, claves y contratos técnicos para mantener
+la trazabilidad del flujo diario.
+
+La tarjeta microbiológica mantiene microorganismo, muestra, fecha,
+clasificación MDRO/no-MDRO y S/R/I legibles en modo oscuro mediante tokens de
+tema. No cambia la semántica clínica ni la asociación contextual por
+paciente+episodio.
+
 ## Actualización técnica 2026-11-13 — determinismo temporal
 
 El único fallo backend sensible a la fecha quedó reproducido y corregido sin
